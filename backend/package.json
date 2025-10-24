@@ -9,9 +9,12 @@
     "start": "node dist/server.js",
     "test": "jest",
     "lint": "eslint . --ext .ts",
-    "migrate": "node-pg-migrate",
-    "migrate:up": "node-pg-migrate up",
-    "migrate:down": "node-pg-migrate down"
+    "migrate:make": "knex migrate:make --knexfile knexfile.ts -x ts",
+    "migrate:latest": "knex migrate:latest --knexfile knexfile.ts",
+    "migrate:rollback": "knex migrate:rollback --knexfile knexfile.ts",
+    "migrate:status": "knex migrate:status --knexfile knexfile.ts",
+    "seed:make": "knex seed:make --knexfile knexfile.ts -x ts",
+    "seed:run": "knex seed:run --knexfile knexfile.ts"
   },
   "keywords": [
     "debate",
@@ -24,7 +27,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "pg": "^8.11.3",
-    "pg-promise": "^11.5.4",
+    "knex": "^3.1.0",
     "dotenv": "^16.3.1",
     "cors": "^2.8.5",
     "helmet": "^7.1.0",
@@ -52,8 +55,7 @@
     "nodemon": "^3.0.2",
     "jest": "^29.7.0",
     "@types/jest": "^29.5.11",
-    "ts-jest": "^29.1.1",
-    "node-pg-migrate": "^6.2.2"
+    "ts-jest": "^29.1.1"
   },
   "engines": {
     "node": ">=18.0.0"
